@@ -1,0 +1,6 @@
+{
+  "extraServices": ["Pilates", "CrossFit", "Mobility & Stretch"],
+  "extraPlans": [
+    { "name": "BOOST", "price": "$39", "period": "/mo", "features": ["Group classes", "1 PT session/month"], "highlight": false }
+  ]
+}
