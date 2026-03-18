@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080808;
+  --surface: #111008;
+  --card: #1a1a12;
+  --accent: #C99A0D;
+  --accent-light: #e8b510;
+  --text: #F2F0E8;
+  --muted: #8a8578;
+  --border: #2a2418;
+  --dark-brown: #2A2418;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --radius: 12px;
+  --transition: 0.3s ease;
+  --scrolled-bg: rgba(8,8,8,0.97);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+section { padding: 100px 0; }
+
+/* Reveal animation
+  - By default `.reveal` is visible so content shows when JS/HMR timing fails.
+  - When JS wants to animate, it adds the `animate` class which hides the element initially.
+  - When the observer adds `in-view` the element transitions into view.
+*/
+.reveal { opacity: 1; transform: none; transition: opacity 520ms var(--transition), transform 520ms var(--transition); }
+.reveal.animate { opacity: 0; transform: translateY(18px); }
+.reveal.animate.in-view { opacity: 1; transform: translateY(0); }
+
+/* Light theme override */
+.light {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --accent: #C99A0D;
+  --text: #111111;
+  --muted: #666666;
+  --border: #e6dfd0;
+  --scrolled-bg: rgba(255,255,255,0.97);
+}
+
+/* Small UI helpers */
+.btn-transition { transition: transform 0.18s ease, opacity 0.18s ease; }
+.icon-btn { background: none; border: none; cursor: pointer; color: var(--text); padding: 8px; border-radius: 6px; }
+.search-input { padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); outline: none; }
+.search-input:focus { border-color: var(--accent); }
+
+/* Chips and service grid */
+.chip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; font-size: 0.9rem; }
+.chip.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 8px; }
+.service-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+.service-card h3 { font-size: 1.4rem; }
+.badge-included { background: rgba(201,154,13,0.12); color: var(--accent); padding: 6px 10px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; }
+.tag-chip { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+
+@media (max-width: 900px) {
+  .service-grid { grid-template-columns: 1fr !important; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.accent { color: var(--accent); }
+
+.section-sub {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin-bottom: 60px;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* Back to top button style (fallback) */
+.back-to-top { position: fixed; right: 20px; bottom: 28px; background: var(--accent); color: #000; border: none; padding: 10px 14px; border-radius: 999px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.2); font-weight: 700; }
