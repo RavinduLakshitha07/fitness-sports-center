@@ -1,16 +1,89 @@
-# React + Vite
+# 🏋️ Fitness Sports Center
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Project Overview
 
-Currently, two official plugins are available:
+Fitness Sports Center is a modern web application designed to provide users with information about fitness programs, sports activities, and gym services.
+It offers a clean UI and smooth user experience for browsing fitness-related content.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔗 https://fitness-sports-center.netlify.app/
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+* ⚛️ React (Frontend Library)
+* ⚡ Vite (Build Tool)
+* 🎨 CSS (Styling)
+* 📦 Node.js & npm (Package Management)
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/RavinduLakshitha07/fitness-sports-center.git
+```
+
+### 2️⃣ Navigate to project folder
+
+```bash
+cd gymwebsite
+```
+
+### 3️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 4️⃣ Run the development server
+
+```bash
+npm run dev
+```
+
+### 5️⃣ Open in browser
+
+```
+http://localhost:5173
+```
+
+---
+
+## ✨ Features
+
+* Responsive fitness website UI
+* Modern design using React
+* Fast performance with Vite
+* Organized component-based structure
+
+---
+
+## 📁 Project Structure
+
+```
+gymwebsite/
+├── public/
+├── src/
+├── index.html
+├── package.json
+├── vite.config.js
+```
+
+---
+
+## 👨‍💻 Author
+
+**Ravindu Lakshitha**
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
