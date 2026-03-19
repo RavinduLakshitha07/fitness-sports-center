@@ -7,13 +7,20 @@ export default function LoginModal({ open, onClose }) {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   if (!open) return null;
+
+  const emailIsValid = (e => /\S+@\S+\.\S+/.test(e))(email);
+  const passwordIsValid = password.length >= 6;
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
     if (!email || !password) return setError('Enter email and password');
+    if (!emailIsValid) return setError('Please enter a valid email address');
+    if (!passwordIsValid) return setError('Password must be at least 6 characters');
     try {
       setLoading(true);
       await login({ email, password });
@@ -32,15 +39,37 @@ export default function LoginModal({ open, onClose }) {
         <p style={{ color: 'var(--muted)', marginBottom: 12 }}>Enter your email and password to continue.</p>
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: 10 }}>
-            <input className="search-input" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+            <input
+              className="search-input"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              onBlur={() => setEmailTouched(true)}
+              aria-invalid={!emailIsValid && emailTouched}
+              autoFocus
+            />
+            {emailTouched && !emailIsValid && (
+              <div style={{ color: '#ffb3b3', fontSize: '0.9rem', marginTop: 6 }}>Enter a valid email (e.g. you@domain.com)</div>
+            )}
           </div>
           <div style={{ marginBottom: 12 }}>
-            <input className="search-input" type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+            <input
+              className="search-input"
+              type="password"
+              placeholder="Password (min 6 chars)"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              onBlur={() => setPasswordTouched(true)}
+              aria-invalid={!passwordIsValid && passwordTouched}
+            />
+            {passwordTouched && !passwordIsValid && (
+              <div style={{ color: '#ffb3b3', fontSize: '0.9rem', marginTop: 6 }}>Password must be at least 6 characters</div>
+            )}
           </div>
           {error && <div style={{ color: '#ff6b6b', marginBottom: 10 }}>{error}</div>}
           <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
             <button type="button" onClick={onClose} style={{ background: 'transparent', border: '1px solid var(--border)', padding: '8px 12px', borderRadius: 8 }}>Cancel</button>
-            <button type="submit" disabled={loading} style={{ background: 'var(--accent)', color: '#000', padding: '8px 12px', borderRadius: 8, fontWeight: 700 }}>{loading ? 'Signing...' : 'Sign in'}</button>
+            <button type="submit" disabled={loading || !emailIsValid || !passwordIsValid} style={{ background: (loading || !emailIsValid || !passwordIsValid) ? 'rgba(201,154,13,0.4)' : 'var(--accent)', color: '#000', padding: '8px 12px', borderRadius: 8, fontWeight: 700 }}>{loading ? 'Signing...' : 'Sign in'}</button>
           </div>
         </form>
       </div>
