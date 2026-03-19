@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import logo from '../assets/logo.jpg';
+import LoginModal from './LoginModal';
+import { AuthContext } from '../AuthContext';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -15,6 +17,11 @@ export default function Navbar() {
 
   // theme toggle (dark/light)
   const [light, setLight] = useState(false);
+
+  // login modal
+  const [showLogin, setShowLogin] = useState(false);
+
+  const { user, logout } = useContext(AuthContext);
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', light);
@@ -69,6 +76,16 @@ export default function Navbar() {
             {light ? '🌙' : '🌞'}
           </button>
 
+          {/* Auth actions */}
+          {user ? (
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <span style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>Hi, {user.name}</span>
+              <button onClick={() => logout()} style={{ background: 'transparent', border: '1px solid var(--border)', padding: '8px 12px', borderRadius: 6 }}>Logout</button>
+            </div>
+          ) : (
+            <button onClick={() => setShowLogin(true)} style={{ background: 'var(--accent)', color: '#000', padding: '8px 12px', borderRadius: 6, fontWeight: 700 }}>Login</button>
+          )}
+
           {/* Hamburger */}
         <button onClick={() => setMenuOpen(!menuOpen)}
           style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', flexDirection: 'column', gap: '5px' }}
@@ -90,6 +107,8 @@ export default function Navbar() {
           ))}
         </div>
       )}
+
+      <LoginModal open={showLogin} onClose={() => setShowLogin(false)} />
 
       <style>{`
         @media (max-width: 768px) {
